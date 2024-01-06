@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Search Engine Selector</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f5f5f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        #search-container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        #search-container:hover {
+            transform: scale(1.02);
+            background-color: #f0f8ff; /* Alice Blue */
+        }
+        #search-engine,
+        #search-bar,
+        #search-btn {
+            margin: 10px 0;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        #search-engine:hover,
+        #search-bar:hover,
+        #search-btn:hover {
+            transform: scale(1.05);
+            background-color: #add8e6; /* Light Blue */
+        }
+        #search-engine {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+        #engine-label {
+            margin-right: 10px;
+            font-weight: bold;
+            color: #008080; /* Teal */
+        }
+        #search-engine select {
+            border: 1px solid #008080; /* Teal */
+            border-radius: 5px;
+            padding: 8px;
+            outline: none;
+            cursor: pointer;
+            background-color: #e0ffff; /* Light Cyan */
+            transition: background-color 0.3s ease;
+            position: relative;
+            z-index: 1;
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+        }
+        #search-engine select:hover {
+            background-color: #b0e0e6; /* Powder Blue */
+        }
+        #search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #4682b4; /* Steel Blue */
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        #search-query {
+            flex: 1;
+            border: none;
+            padding: 10px;
+            margin-right: 5px;
+            outline: none;
+        }
+        #search-btn {
+            background-color: #20b2aa; /* Light Sea Green */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+        }
+        #search-btn i {
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="search-container">
+        <div id="search-engine">
+            <label id="engine-label" for="search-engine">Choose a search engine:</label>
+            <select id="search-engine-dropdown">
+                <option value="">Haven't Choose</option>
+                <option value="google">Google</option>
+                <option value="bing">Bing</option>
+                <option value="baidu">Baidu</option>
+            </select>
+        </div>
+        <div id="search-bar">
+            <input type="text" id="search-query" placeholder="Enter your search query">
+            <button id="search-btn" onclick="search()"><i class="material-icons">search</i></button>
+        </div>
+    </div>
+
+    <script>
+        function search() {
+            var searchEngine = document.getElementById("search-engine-dropdown").value;
+            var searchQuery = document.getElementById("search-query").value;
+
+            if (searchEngine === "") {
+                alert("Please choose a search engine");
+            } else if (searchQuery.trim() !== "") {
+                switch (searchEngine) {
+                    case "google":
+                        window.location.href = "https://www.google.com/search?q=" + encodeURIComponent(searchQuery);
+                        break;
+                    case "bing":
+                        window.location.href = "https://www.bing.com/search?q=" + encodeURIComponent(searchQuery);
+                        break;
+                    case "baidu":
+                        window.location.href = "https://www.baidu.com/s?wd=" + encodeURIComponent(searchQuery);
+                        break;
+                    default:
+                        alert("Invalid search engine selection");
+                }
+            } else {
+                alert("Please enter a search query");
+            }
+        }
+    </script>
+
+</body>
+</html>
